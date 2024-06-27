@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pytools"
+version = "0.1.0"
+description = ""
+authors = ["Grégoire Henry <gregoireh@pm.me>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^2.0.0"
+natsort = "^8.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
