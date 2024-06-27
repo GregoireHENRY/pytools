@@ -3,12 +3,25 @@ import subprocess
 from pathlib import Path
 from natsort import natsorted
 
+# example usage in venv
+# python -i make_video.py -fp "/path/to/folder/with/frames" -r 140 -c 18 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Helper")
+
+    #
     parser.add_argument("-p", "--path", type=Path, default=Path("."))
+    
+    # for kalast, to find frames auto in exported data
     parser.add_argument("-f", "--find_frames", action="store_true")
+
+    # if auto, quickly select which elapsed time
     parser.add_argument("-e", "--elapsed", type=int)
+
+    # fps video output
     parser.add_argument("-r", "--rate", type=int)
+
+    # ffmpeg param for quality, 18 is high qual
     parser.add_argument("-c", "--crf", type=int)
 
     args = parser.parse_args()
@@ -43,9 +56,6 @@ if __name__ == "__main__":
             buf.write(f"file '{frame.name}'\n")
 
     print(f"Wrote concat file at {concat}")
-
-    # rate (fps) can be 60, 140, ...
-    # crf can be 18
 
     rate = f"-r {args.rate}" if args.rate is not None else ""
     crf = f"-crf {args.crf}" if args.crf is not None else ""
